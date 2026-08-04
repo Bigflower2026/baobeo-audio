@@ -331,7 +331,7 @@
   <div class="greeting">
     <div class="emoji" id="greetEmoji">🌞</div>
     <div class="text" id="greetText">宝贝听一听</div>
-    <div class="sub">点一点，给宝贝放首歌吧</div>
+    <div class="sub">点一点，给宝贝听故事看世界吧</div>
   </div>
   <div class="cat-grid" id="catGrid"></div>
 </div>
@@ -446,70 +446,124 @@
 // ============================================================
 var CATEGORIES = [
   {
+    id: "hugo",
+    name: "雨果带你看世界",
+    icon: "🌍",
+    items: [
+      { name: "什么是大", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/01_%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7.mp3", duration: "" },
+      { name: "什么是朋友", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/02_%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%8B%E5%8F%8B.mp3", duration: "" },
+      { name: "什么是玩耍", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/03_%E4%BB%80%E4%B9%88%E6%98%AF%E7%8E%A9%E8%80%8D.mp3", duration: "" },
+      { name: "什么是妒忌", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/04_%E4%BB%80%E4%B9%88%E6%98%AF%E5%A6%92%E5%BF%8C.mp3", duration: "" },
+      { name: "什么是学习", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/05_%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%A6%E4%B9%A0.mp3", duration: "" },
+      { name: "什么是学校", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/06_%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%A6%E6%A0%A1.mp3", duration: "" },
+      { name: "什么是友善", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/07_%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8B%E5%96%84.mp3", duration: "" },
+      { name: "什么是公平", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/08_%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%AC%E5%B9%B3.mp3", duration: "" },
+      { name: "什么是英雄", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/09_%E4%BB%80%E4%B9%88%E6%98%AF%E8%8B%B1%E9%9B%84.mp3", duration: "" },
+      { name: "什么是自然", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/10_%E4%BB%80%E4%B9%88%E6%98%AF%E8%87%AA%E7%84%B6.mp3", duration: "" },
+      { name: "什么是艺术", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/11_%E4%BB%80%E4%B9%88%E6%98%AF%E8%89%BA%E6%9C%AF.mp3", duration: "" },
+      { name: "什么是特点", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/12_%E4%BB%80%E4%B9%88%E6%98%AF%E7%89%B9%E7%82%B9.mp3", duration: "" },
+      { name: "什么是工作", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/13_%E4%BB%80%E4%B9%88%E6%98%AF%E5%B7%A5%E4%BD%9C.mp3", duration: "" },
+      { name: "什么是思考", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/14_%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%9D%E8%80%83.mp3", duration: "" },
+      { name: "什么是不一样", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/15_%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8D%E4%B8%80%E6%A0%B7.mp3", duration: "" },
+      { name: "什么是难过", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/16_%E4%BB%80%E4%B9%88%E6%98%AF%E9%9A%BE%E8%BF%87.mp3", duration: "" },
+      { name: "什么是记住", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/17_%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%B0%E4%BD%8F.mp3", duration: "" },
+      { name: "什么是知识", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/18_%E4%BB%80%E4%B9%88%E6%98%AF%E7%9F%A5%E8%AF%86.mp3", duration: "" },
+      { name: "什么是决定", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/19_%E4%BB%80%E4%B9%88%E6%98%AF%E5%86%B3%E5%AE%9A.mp3", duration: "" },
+      { name: "什么是建议", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/20_%E4%BB%80%E4%B9%88%E6%98%AF%E5%BB%BA%E8%AE%AE.mp3", duration: "" },
+      { name: "什么是家", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/21_%E4%BB%80%E4%B9%88%E6%98%AF%E5%AE%B6.mp3", duration: "" },
+      { name: "什么是生气", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/22_%E4%BB%80%E4%B9%88%E6%98%AF%E7%94%9F%E6%B0%94.mp3", duration: "" },
+      { name: "什么是美", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/23_%E4%BB%80%E4%B9%88%E6%98%AF%E7%BE%8E.mp3", duration: "" },
+      { name: "什么是真理", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/24_%E4%BB%80%E4%B9%88%E6%98%AF%E7%9C%9F%E7%90%86.mp3", duration: "" },
+      { name: "什么是宠物", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/25_%E4%BB%80%E4%B9%88%E6%98%AF%E5%AE%A0%E7%89%A9.mp3", duration: "" },
+      { name: "什么是分享", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/26_%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E4%BA%AB.mp3", duration: "" },
+      { name: "什么是其他人", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/27_%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%B6%E4%BB%96%E4%BA%BA.mp3", duration: "" },
+      { name: "什么是规则", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/28_%E4%BB%80%E4%B9%88%E6%98%AF%E8%A7%84%E5%88%99.mp3", duration: "" },
+      { name: "什么是无限", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/29_%E4%BB%80%E4%B9%88%E6%98%AF%E6%97%A0%E9%99%90.mp3", duration: "" },
+      { name: "什么是心智", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/30_%E4%BB%80%E4%B9%88%E6%98%AF%E5%BF%83%E6%99%BA.mp3", duration: "" },
+      { name: "什么是聪明", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/31_%E4%BB%80%E4%B9%88%E6%98%AF%E8%81%AA%E6%98%8E.mp3", duration: "" },
+      { name: "什么是耐心", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/32_%E4%BB%80%E4%B9%88%E6%98%AF%E8%80%90%E5%BF%83.mp3", duration: "" },
+      { name: "什么是感官", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/33_%E4%BB%80%E4%B9%88%E6%98%AF%E6%84%9F%E5%AE%98.mp3", duration: "" },
+      { name: "什么是音乐", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/34_%E4%BB%80%E4%B9%88%E6%98%AF%E9%9F%B3%E4%B9%90.mp3", duration: "" },
+      { name: "什么是服从", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/35_%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%8D%E4%BB%8E.mp3", duration: "" },
+      { name: "什么是成长", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/36_%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%90%E9%95%BF.mp3", duration: "" },
+      { name: "什么是长大", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/37_%E4%BB%80%E4%B9%88%E6%98%AF%E9%95%BF%E5%A4%A7.mp3", duration: "" },
+      { name: "什么是恐惧", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/38_%E4%BB%80%E4%B9%88%E6%98%AF%E6%81%90%E6%83%A7.mp3", duration: "" },
+      { name: "什么是梦", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/39_%E4%BB%80%E4%B9%88%E6%98%AF%E6%A2%A6.mp3", duration: "" },
+      { name: "什么是自由", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/40_%E4%BB%80%E4%B9%88%E6%98%AF%E8%87%AA%E7%94%B1.mp3", duration: "" },
+      { name: "什么是强", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/41_%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%BA.mp3", duration: "" },
+      { name: "什么是想象力", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/42_%E4%BB%80%E4%B9%88%E6%98%AF%E6%83%B3%E8%B1%A1%E5%8A%9B.mp3", duration: "" },
+      { name: "什么是争斗", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/43_%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%89%E6%96%97.mp3", duration: "" },
+      { name: "什么是选择", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/44_%E4%BB%80%E4%B9%88%E6%98%AF%E9%80%89%E6%8B%A9.mp3", duration: "" },
+      { name: "什么是家庭", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/45_%E4%BB%80%E4%B9%88%E6%98%AF%E5%AE%B6%E5%BA%AD.mp3", duration: "" },
+      { name: "什么是爱", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/46_%E4%BB%80%E4%B9%88%E6%98%AF%E7%88%B1.mp3", duration: "" },
+      { name: "什么是欲望", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/47_%E4%BB%80%E4%B9%88%E6%98%AF%E6%AC%B2%E6%9C%9B.mp3", duration: "" },
+      { name: "什么是妥协", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/48_%E4%BB%80%E4%B9%88%E6%98%AF%E5%A6%A5%E5%8D%8F.mp3", duration: "" },
+      { name: "什么是偏爱", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/49_%E4%BB%80%E4%B9%88%E6%98%AF%E5%81%8F%E7%88%B1.mp3", duration: "" },
+      { name: "什么是变化", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/50_%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%98%E5%8C%96.mp3", duration: "" },
+      { name: "什么是老", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/51_%E4%BB%80%E4%B9%88%E6%98%AF%E8%80%81.mp3", duration: "" },
+      { name: "什么是勇敢", url: "https://bigflower2026.github.io/baobeo-audio/audio/hugo/52_%E4%BB%80%E4%B9%88%E6%98%AF%E5%8B%87%E6%95%A2.mp3", duration: "" }
+    ]
+  },
+  {
+    id: "history",
+    name: "中华上下五千年",
+    icon: "🏯",
+    items: [
+      { name: "炎黄子孙（用原画看）", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/01_%E7%82%8E%E9%BB%84%E5%AD%90%E5%AD%99%EF%BC%88%E7%94%A8%E5%8E%9F%E7%94%BB%E7%9C%8B%EF%BC%89.mp3", duration: "" },
+      { name: "尧舜禅让", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/02_%E5%B0%A7%E8%88%9C%E7%A6%85%E8%AE%A9.mp3", duration: "" },
+      { name: "大禹治水", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/03_%E5%A4%A7%E7%A6%B9%E6%B2%BB%E6%B0%B4.mp3", duration: "" },
+      { name: "家天下", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/04_%E5%AE%B6%E5%A4%A9%E4%B8%8B.mp3", duration: "" },
+      { name: "商汤伐夏", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/05_%E5%95%86%E6%B1%A4%E4%BC%90%E5%A4%8F.mp3", duration: "" },
+      { name: "姜太公钓鱼", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/06_%E5%A7%9C%E5%A4%AA%E5%85%AC%E9%92%93%E9%B1%BC.mp3", duration: "" },
+      { name: "骊山烽火", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/07_%E9%AA%8A%E5%B1%B1%E7%83%BD%E7%81%AB.mp3", duration: "" },
+      { name: "孔丘周游列国", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/08_%E5%AD%94%E4%B8%98%E5%91%A8%E6%B8%B8%E5%88%97%E5%9B%BD.mp3", duration: "" },
+      { name: "晏子使楚", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/09_%E6%99%8F%E5%AD%90%E4%BD%BF%E6%A5%9A.mp3", duration: "" },
+      { name: "卧薪尝胆", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/10_%E5%8D%A7%E8%96%AA%E5%B0%9D%E8%83%86.mp3", duration: "" },
+      { name: "商鞅变法", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/11_%E5%95%86%E9%9E%85%E5%8F%98%E6%B3%95.mp3", duration: "" },
+      { name: "屈原投江", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/12_%E5%B1%88%E5%8E%9F%E6%8A%95%E6%B1%9F.mp3", duration: "" },
+      { name: "将相和", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/13_%E5%B0%86%E7%9B%B8%E5%92%8C.mp3", duration: "" },
+      { name: "窃符救赵", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/14_%E7%AA%83%E7%AC%A6%E6%95%91%E8%B5%B5.mp3", duration: "" },
+      { name: "荆轲刺秦", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/15_%E8%8D%86%E8%BD%B2%E5%88%BA%E7%A7%A6.mp3", duration: "" },
+      { name: "陈胜吴广起义", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/16_%E9%99%88%E8%83%9C%E5%90%B4%E5%B9%BF%E8%B5%B7%E4%B9%89.mp3", duration: "" },
+      { name: "鸿门宴", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/17_%E9%B8%BF%E9%97%A8%E5%AE%B4.mp3", duration: "" },
+      { name: "四面楚歌", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/18_%E5%9B%9B%E9%9D%A2%E6%A5%9A%E6%AD%8C.mp3", duration: "" },
+      { name: "张骞出使西域", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/19_%E5%BC%A0%E9%AA%9E%E5%87%BA%E4%BD%BF%E8%A5%BF%E5%9F%9F.mp3", duration: "" },
+      { name: "苏武牧羊", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/20_%E8%8B%8F%E6%AD%A6%E7%89%A7%E7%BE%8A.mp3", duration: "" },
+      { name: "昭君出塞", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/21_%E6%98%AD%E5%90%9B%E5%87%BA%E5%A1%9E.mp3", duration: "" },
+      { name: "王莽篡国", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/22_%E7%8E%8B%E8%8E%BD%E7%AF%A1%E5%9B%BD.mp3", duration: "" },
+      { name: "光武中兴", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/23_%E5%85%89%E6%AD%A6%E4%B8%AD%E5%85%B4.mp3", duration: "" },
+      { name: "黄巾起义", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/24_%E9%BB%84%E5%B7%BE%E8%B5%B7%E4%B9%89.mp3", duration: "" },
+      { name: "官渡之战", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/25_.%E5%AE%98%E6%B8%A1%E4%B9%8B%E6%88%98.mp3", duration: "" },
+      { name: "三顾茅庐", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/26_.%E4%B8%89%E9%A1%BE%E8%8C%85%E5%BA%90.mp3", duration: "" },
+      { name: "赤壁之战", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/27_%E8%B5%A4%E5%A3%81%E4%B9%8B%E6%88%98.mp3", duration: "" },
+      { name: "火烧连营", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/28_%E7%81%AB%E7%83%A7%E8%BF%9E%E8%90%A5.mp3", duration: "" },
+      { name: "星落五丈原", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/29_%E6%98%9F%E8%90%BD%E4%BA%94%E4%B8%88%E5%8E%9F.mp3", duration: "" },
+      { name: "乐不思蜀", url: "https://bigflower2026.github.io/baobeo-audio/audio/history/30_%E4%B9%90%E4%B8%8D%E6%80%9D%E8%9C%80.mp3", duration: "" }
+    ]
+  },
+  {
     id: "english",
     name: "英语熏听",
     icon: "🔤",
-    items: [
-      { name: "Twinkle Twinkle Little Star", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", duration: "3:00" },
-      { name: "ABC Song", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", duration: "2:30" },
-      { name: "Head Shoulders Knees and Toes", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", duration: "2:45" },
-      { name: "Five Little Monkeys", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", duration: "3:15" }
-    ]
+    items: []
   },
   {
     id: "stories",
     name: "故事天地",
     icon: "📖",
-    items: [
-      { name: "三只小猪", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3", duration: "8:20" },
-      { name: "小红帽", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3", duration: "7:45" },
-      { name: "丑小鸭", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3", duration: "10:30" },
-      { name: "龟兔赛跑", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3", duration: "6:15" }
-    ]
-  },
-  {
-    id: "guoxue",
-    name: "国学经典",
-    icon: "📜",
-    items: [
-      { name: "三字经（节选）", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3", duration: "5:40" },
-      { name: "弟子规（节选）", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3", duration: "6:20" },
-      { name: "唐诗三百首·春晓", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3", duration: "3:10" },
-      { name: "唐诗三百首·静夜思", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3", duration: "2:50" }
-    ]
-  },
-  {
-    id: "encyclopedia",
-    name: "百科探索",
-    icon: "🔭",
-    items: [
-      { name: "恐龙世界", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3", duration: "9:00" },
-      { name: "太阳系八大行星", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3", duration: "8:30" },
-      { name: "海底世界", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3", duration: "7:45" },
-      { name: "动物王国", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3", duration: "8:10" }
-    ]
+    items: []
   },
   {
     id: "music",
     name: "音乐儿歌",
     icon: "🎵",
-    items: [
-      { name: "小星星", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", duration: "3:00" },
-      { name: "两只老虎", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", duration: "2:20" },
-      { name: "数鸭子", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", duration: "2:40" },
-      { name: "拔萝卜", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", duration: "3:10" }
-    ]
+    items: []
   },
   {
     id: "sleep",
     name: "哄睡轻音乐",
     icon: "🌙",
-    items: [
-      { name: "月光摇篮曲", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3", duration: "15:00" },
-      { name: "星空下的梦", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3", duration: "12:00" },
-      { name: "森林安眠曲", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3", duration: "18:00" },
-      { name: "雨声助眠", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3", duration: "20:00" }
-    ]
+    items: []
   }
 ];
 
