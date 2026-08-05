@@ -322,7 +322,79 @@
 
     /* ===== 收藏标记 ===== */
     .fav-star { font-size: 20px; flex-shrink: 0; }
-  </style>
+  
+    /* ===== 每周精听 ===== */
+    .weekly-section {
+      padding: 0 20px 8px;
+    }
+    .weekly-card {
+      background: linear-gradient(135deg, #FF9A56 0%, #E85D26 100%);
+      border-radius: 20px;
+      padding: 20px;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(232,93,38,0.25);
+    }
+    .weekly-header {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 14px;
+    }
+    .weekly-header .badge {
+      background: rgba(255,255,255,0.25);
+      border-radius: 12px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .weekly-header .week-num {
+      font-size: 13px;
+      opacity: 0.85;
+    }
+    .weekly-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .weekly-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .weekly-item {
+      background: rgba(255,255,255,0.2);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+    .weekly-item:active {
+      background: rgba(255,255,255,0.35);
+      transform: scale(0.98);
+    }
+    .weekly-item .w-icon {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .weekly-item .w-info { flex: 1; min-width: 0; }
+    .weekly-item .w-name {
+      font-size: 15px; font-weight: 600;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .weekly-item .w-cat { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+    .weekly-item .w-play {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .weekly-item .w-play svg { width: 16px; height: 16px; fill: #fff; }
+</style>
 </head>
 <body>
 
@@ -333,6 +405,7 @@
     <div class="text" id="greetText">宝贝听一听</div>
     <div class="sub">点一点，给宝贝听故事看世界吧</div>
   </div>
+  <div class="weekly-section" id="weeklySection"></div>
   <div class="cat-grid" id="catGrid"></div>
 </div>
 
@@ -686,6 +759,327 @@ var CATEGORIES = [
     ]
   },
   {
+    id: "poetry",
+    name: "唐诗三百首",
+    icon: "📜",
+    items: [
+      { name: "春晓", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/001_%E6%98%A5%E6%99%93.mp3", duration: "" },
+      { name: "望月怀远", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/002_%E6%9C%9B%E6%9C%88%E6%80%80%E8%BF%9C.mp3", duration: "" },
+      { name: "渭城曲", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/003_%E6%B8%AD%E5%9F%8E%E6%9B%B2.mp3", duration: "" },
+      { name: "月下独酌", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/004_%E6%9C%88%E4%B8%8B%E7%8B%AC%E9%85%8C.mp3", duration: "" },
+      { name: "登鹳雀楼", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/005_%E7%99%BB%E9%B9%B3%E9%9B%80%E6%A5%BC.mp3", duration: "" },
+      { name: "枫桥夜泊", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/006_%E6%9E%AB%E6%A1%A5%E5%A4%9C%E6%B3%8A.mp3", duration: "" },
+      { name: "芙蓉楼送辛渐", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/007_%E8%8A%99%E8%93%89%E6%A5%BC%E9%80%81%E8%BE%9B%E6%B8%90.mp3", duration: "" },
+      { name: "闻官军收河南河北", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/008_%E9%97%BB%E5%AE%98%E5%86%9B%E6%94%B6%E6%B2%B3%E5%8D%97%E6%B2%B3%E5%8C%97.mp3", duration: "" },
+      { name: "终南望余雪", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/009_%E7%BB%88%E5%8D%97%E6%9C%9B%E4%BD%99%E9%9B%AA.mp3", duration: "" },
+      { name: "早发白帝城", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/010_%E6%97%A9%E5%8F%91%E7%99%BD%E5%B8%9D%E5%9F%8E.mp3", duration: "" },
+      { name: "寻隐者不遇", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/011_%E5%AF%BB%E9%9A%90%E8%80%85%E4%B8%8D%E9%81%87.mp3", duration: "" },
+      { name: "江雪", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/012_%E6%B1%9F%E9%9B%AA.mp3", duration: "" },
+      { name: "登乐游原", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/013_%E7%99%BB%E4%B9%90%E6%B8%B8%E5%8E%9F.mp3", duration: "" },
+      { name: "游子吟", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/014_%E6%B8%B8%E5%AD%90%E5%90%9F.mp3", duration: "" },
+      { name: "滁州西涧", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/015_%E6%BB%81%E5%B7%9E%E8%A5%BF%E6%B6%A7.mp3", duration: "" },
+      { name: "夜雨寄北", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/016_%E5%A4%9C%E9%9B%A8%E5%AF%84%E5%8C%97.mp3", duration: "" },
+      { name: "相思", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/017_%E7%9B%B8%E6%80%9D.mp3", duration: "" },
+      { name: "登幽州台歌", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/018_%E7%99%BB%E5%B9%BD%E5%B7%9E%E5%8F%B0%E6%AD%8C.mp3", duration: "" },
+      { name: "草", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/019_%E8%8D%89.mp3", duration: "" },
+      { name: "春望", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/020_%E6%98%A5%E6%9C%9B.mp3", duration: "" },
+      { name: "送孟浩然之广陵", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/021_%E9%80%81%E5%AD%9F%E6%B5%A9%E7%84%B6%E4%B9%8B%E5%B9%BF%E9%99%B5.mp3", duration: "" },
+      { name: "宿业师山房待丁大不至", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/022_%E5%AE%BF%E4%B8%9A%E5%B8%88%E5%B1%B1%E6%88%BF%E5%BE%85%E4%B8%81%E5%A4%A7%E4%B8%8D%E8%87%B3.mp3", duration: "" },
+      { name: "春泛若耶溪", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/023_%E6%98%A5%E6%B3%9B%E8%8B%A5%E8%80%B6%E6%BA%AA.mp3", duration: "" },
+      { name: "夕次盱眙县_1", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/024_%E5%A4%95%E6%AC%A1%E7%9B%B1%E7%9C%99%E5%8E%BF_1.mp3", duration: "" },
+      { name: "庐山谣寄卢侍御虚舟_1", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/025_%E5%BA%90%E5%B1%B1%E8%B0%A3%E5%AF%84%E5%8D%A2%E4%BE%8D%E5%BE%A1%E8%99%9A%E8%88%9F_1.mp3", duration: "" },
+      { name: "咏鹅_1", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/026_%E5%92%8F%E9%B9%85_1.mp3", duration: "" },
+      { name: "风_1", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/027_%E9%A3%8E_1.mp3", duration: "" },
+      { name: "晨诣超师院读禅经_1", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/028_%E6%99%A8%E8%AF%A3%E8%B6%85%E5%B8%88%E9%99%A2%E8%AF%BB%E7%A6%85%E7%BB%8F_1.mp3", duration: "" },
+      { name: "绝句_1", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/029_%E7%BB%9D%E5%8F%A5_1.mp3", duration: "" },
+      { name: "望庐山瀑布_1", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/030_%E6%9C%9B%E5%BA%90%E5%B1%B1%E7%80%91%E5%B8%83_1.mp3", duration: "" },
+      { name: "池上", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/031_%E6%B1%A0%E4%B8%8A.mp3", duration: "" },
+      { name: "望岳", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/032_%E6%9C%9B%E5%B2%B3.mp3", duration: "" },
+      { name: "山居秋暝", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/033_%E5%B1%B1%E5%B1%85%E7%A7%8B%E6%9A%9D.mp3", duration: "" },
+      { name: "江畔独步寻花", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/034_%E6%B1%9F%E7%95%94%E7%8B%AC%E6%AD%A5%E5%AF%BB%E8%8A%B1.mp3", duration: "" },
+      { name: "望洞庭", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/035_%E6%9C%9B%E6%B4%9E%E5%BA%AD.mp3", duration: "" },
+      { name: "秋词", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/036_%E7%A7%8B%E8%AF%8D.mp3", duration: "" },
+      { name: "咏柳", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/037_%E5%92%8F%E6%9F%B3.mp3", duration: "" },
+      { name: "绝句", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/038_%E7%BB%9D%E5%8F%A5.mp3", duration: "" },
+      { name: "春夜喜雨", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/039_%E6%98%A5%E5%A4%9C%E5%96%9C%E9%9B%A8.mp3", duration: "" },
+      { name: "钱塘湖春行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/040_%E9%92%B1%E5%A1%98%E6%B9%96%E6%98%A5%E8%A1%8C.mp3", duration: "" },
+      { name: "独坐敬亭山", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/041_%E7%8B%AC%E5%9D%90%E6%95%AC%E4%BA%AD%E5%B1%B1.mp3", duration: "" },
+      { name: "月夜", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/042_%E6%9C%88%E5%A4%9C.mp3", duration: "" },
+      { name: "溪居", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/043_%E6%BA%AA%E5%B1%85.mp3", duration: "" },
+      { name: "夜归鹿门歌", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/044_%E5%A4%9C%E5%BD%92%E9%B9%BF%E9%97%A8%E6%AD%8C.mp3", duration: "" },
+      { name: "春江花月夜", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/045_%E6%98%A5%E6%B1%9F%E8%8A%B1%E6%9C%88%E5%A4%9C.mp3", duration: "" },
+      { name: "春江花月夜", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/046_%E6%98%A5%E6%B1%9F%E8%8A%B1%E6%9C%88%E5%A4%9C.mp3", duration: "" },
+      { name: "望天门山", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/047_%E6%9C%9B%E5%A4%A9%E9%97%A8%E5%B1%B1.mp3", duration: "" },
+      { name: "石鱼湖上醉歌并序", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/048_%E7%9F%B3%E9%B1%BC%E6%B9%96%E4%B8%8A%E9%86%89%E6%AD%8C%E5%B9%B6%E5%BA%8F.mp3", duration: "" },
+      { name: "山石", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/049_%E5%B1%B1%E7%9F%B3.mp3", duration: "" },
+      { name: "和晋陵陆丞早春游望", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/050_%E5%92%8C%E6%99%8B%E9%99%B5%E9%99%86%E4%B8%9E%E6%97%A9%E6%98%A5%E6%B8%B8%E6%9C%9B.mp3", duration: "" },
+      { name: "次北固山下", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/051_%E6%AC%A1%E5%8C%97%E5%9B%BA%E5%B1%B1%E4%B8%8B.mp3", duration: "" },
+      { name: "归嵩山作", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/052_%E5%BD%92%E5%B5%A9%E5%B1%B1%E4%BD%9C.mp3", duration: "" },
+      { name: "汉江临泛", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/053_%E6%B1%89%E6%B1%9F%E4%B8%B4%E6%B3%9B.mp3", duration: "" },
+      { name: "新年作", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/054_%E6%96%B0%E5%B9%B4%E4%BD%9C.mp3", duration: "" },
+      { name: "阙题", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/055_%E9%98%99%E9%A2%98.mp3", duration: "" },
+      { name: "秋日赴阙题潼关驿楼", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/056_%E7%A7%8B%E6%97%A5%E8%B5%B4%E9%98%99%E9%A2%98%E6%BD%BC%E5%85%B3%E9%A9%BF%E6%A5%BC.mp3", duration: "" },
+      { name: "早秋", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/057_%E6%97%A9%E7%A7%8B.mp3", duration: "" },
+      { name: "灞上秋居", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/058_%E7%81%9E%E4%B8%8A%E7%A7%8B%E5%B1%85.mp3", duration: "" },
+      { name: "宿府", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/059_%E5%AE%BF%E5%BA%9C.mp3", duration: "" },
+      { name: "夕望岳阳", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/060_%E5%A4%95%E6%9C%9B%E5%B2%B3%E9%98%B3.mp3", duration: "" },
+      { name: "同题仙游观", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/061_%E5%90%8C%E9%A2%98%E4%BB%99%E6%B8%B8%E8%A7%82.mp3", duration: "" },
+      { name: "登柳州楼", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/062_%E7%99%BB%E6%9F%B3%E5%B7%9E%E6%A5%BC.mp3", duration: "" },
+      { name: "利州南渡", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/063_%E5%88%A9%E5%B7%9E%E5%8D%97%E6%B8%A1.mp3", duration: "" },
+      { name: "感遇其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/064_%E6%84%9F%E9%81%87%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: "感遇其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/065_%E6%84%9F%E9%81%87%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: "东郊", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/066_%E4%B8%9C%E9%83%8A.mp3", duration: "" },
+      { name: "金谷园", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/067_%E9%87%91%E8%B0%B7%E5%9B%AD.mp3", duration: "" },
+      { name: "蝉", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/068_%E8%9D%89.mp3", duration: "" },
+      { name: "在狱咏蝉", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/069_%E5%9C%A8%E7%8B%B1%E5%92%8F%E8%9D%89.mp3", duration: "" },
+      { name: "落花", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/070_%E8%90%BD%E8%8A%B1.mp3", duration: "" },
+      { name: "孤雁", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/071_%E5%AD%A4%E9%9B%81.mp3", duration: "" },
+      { name: "悯农其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/072_%E6%82%AF%E5%86%9C%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: "悯农其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/073_%E6%82%AF%E5%86%9C%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: "蜂", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/074_%E8%9C%82.mp3", duration: "" },
+      { name: "清明", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/075_%E6%B8%85%E6%98%8E.mp3", duration: "" },
+      { name: "早春呈水部张十八员外", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/076_%E6%97%A9%E6%98%A5%E5%91%88%E6%B0%B4%E9%83%A8%E5%BC%A0%E5%8D%81%E5%85%AB%E5%91%98%E5%A4%96.mp3", duration: "" },
+      { name: "小儿垂钓", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/077_%E5%B0%8F%E5%84%BF%E5%9E%82%E9%92%93.mp3", duration: "" },
+      { name: "酬乐天扬州初逢席上见僧", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/078_%E9%85%AC%E4%B9%90%E5%A4%A9%E6%89%AC%E5%B7%9E%E5%88%9D%E9%80%A2%E5%B8%AD%E4%B8%8A%E8%A7%81%E5%83%A7.mp3", duration: "" },
+      { name: "浪淘沙", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/079_%E6%B5%AA%E6%B7%98%E6%B2%99.mp3", duration: "" },
+      { name: "石头城", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/080_%E7%9F%B3%E5%A4%B4%E5%9F%8E.mp3", duration: "" },
+      { name: "闻乐天左降江州司马", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/081_%E9%97%BB%E4%B9%90%E5%A4%A9%E5%B7%A6%E9%99%8D%E6%B1%9F%E5%B7%9E%E5%8F%B8%E9%A9%AC.mp3", duration: "" },
+      { name: "古朗月行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/082_%E5%8F%A4%E6%9C%97%E6%9C%88%E8%A1%8C.mp3", duration: "" },
+      { name: "旅夜书怀", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/083_%E6%97%85%E5%A4%9C%E4%B9%A6%E6%80%80.mp3", duration: "" },
+      { name: "登岳阳楼", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/084_%E7%99%BB%E5%B2%B3%E9%98%B3%E6%A5%BC.mp3", duration: "" },
+      { name: "登高", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/085_%E7%99%BB%E9%AB%98.mp3", duration: "" },
+      { name: "登楼", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/086_%E7%99%BB%E6%A5%BC.mp3", duration: "" },
+      { name: "客至", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/087_%E5%AE%A2%E8%87%B3.mp3", duration: "" },
+      { name: "临洞庭上张丞相", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/088_%E4%B8%B4%E6%B4%9E%E5%BA%AD%E4%B8%8A%E5%BC%A0%E4%B8%9E%E7%9B%B8.mp3", duration: "" },
+      { name: "回乡偶书", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/089_%E5%9B%9E%E4%B9%A1%E5%81%B6%E4%B9%A6.mp3", duration: "" },
+      { name: "江南逢李龟年", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/090_%E6%B1%9F%E5%8D%97%E9%80%A2%E6%9D%8E%E9%BE%9F%E5%B9%B4.mp3", duration: "" },
+      { name: "观刈麦", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/091_%E8%A7%82%E5%88%88%E9%BA%A6.mp3", duration: "" },
+      { name: "寻西山隐者不遇", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/092_%E5%AF%BB%E8%A5%BF%E5%B1%B1%E9%9A%90%E8%80%85%E4%B8%8D%E9%81%87.mp3", duration: "" },
+      { name: "宿王昌龄", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/093_%E5%AE%BF%E7%8E%8B%E6%98%8C%E9%BE%84.mp3", duration: "" },
+      { name: "观公孙大娘弟子舞剑器行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/094_%E8%A7%82%E5%85%AC%E5%AD%99%E5%A4%A7%E5%A8%98%E5%BC%9F%E5%AD%90%E8%88%9E%E5%89%91%E5%99%A8%E8%A1%8C.mp3", duration: "" },
+      { name: "渔翁", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/095_%E6%B8%94%E7%BF%81.mp3", duration: "" },
+      { name: "琵琶行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/096_%E7%90%B5%E7%90%B6%E8%A1%8C.mp3", duration: "" },
+      { name: "梦游天姥吟留别", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/097_%E6%A2%A6%E6%B8%B8%E5%A4%A9%E5%A7%A5%E5%90%9F%E7%95%99%E5%88%AB.mp3", duration: "" },
+      { name: "蜀道难", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/098_%E8%9C%80%E9%81%93%E9%9A%BE.mp3", duration: "" },
+      { name: "行路难", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/099_%E8%A1%8C%E8%B7%AF%E9%9A%BE.mp3", duration: "" },
+      { name: "将进酒", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/100_%E5%B0%86%E8%BF%9B%E9%85%92.mp3", duration: "" },
+      { name: "金缕衣", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/101_%E9%87%91%E7%BC%95%E8%A1%A3.mp3", duration: "" },
+      { name: "春宿左省", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/102_%E6%98%A5%E5%AE%BF%E5%B7%A6%E7%9C%81.mp3", duration: "" },
+      { name: "宴梅道士山房", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/103_%E5%AE%B4%E6%A2%85%E9%81%93%E5%A3%AB%E5%B1%B1%E6%88%BF.mp3", duration: "" },
+      { name: "岁暮归南山", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/104_%E5%B2%81%E6%9A%AE%E5%BD%92%E5%8D%97%E5%B1%B1.mp3", duration: "" },
+      { name: "寻南溪常道士", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/105_%E5%AF%BB%E5%8D%97%E6%BA%AA%E5%B8%B8%E9%81%93%E5%A3%AB.mp3", duration: "" },
+      { name: "喜外弟卢纶见宿", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/106_%E5%96%9C%E5%A4%96%E5%BC%9F%E5%8D%A2%E7%BA%B6%E8%A7%81%E5%AE%BF.mp3", duration: "" },
+      { name: "风雨", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/107_%E9%A3%8E%E9%9B%A8.mp3", duration: "" },
+      { name: "北青萝", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/108_%E5%8C%97%E9%9D%92%E8%90%9D.mp3", duration: "" },
+      { name: "寻陆鸿渐不遇", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/109_%E5%AF%BB%E9%99%86%E9%B8%BF%E6%B8%90%E4%B8%8D%E9%81%87.mp3", duration: "" },
+      { name: "野望", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/110_%E9%87%8E%E6%9C%9B.mp3", duration: "" },
+      { name: "晚次鄂州", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/111_%E6%99%9A%E6%AC%A1%E9%84%82%E5%B7%9E.mp3", duration: "" },
+      { name: "弹琴", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/112_%E5%BC%B9%E7%90%B4.mp3", duration: "" },
+      { name: "寒食", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/113_%E5%AF%92%E9%A3%9F.mp3", duration: "" },
+      { name: "将赴吴兴登乐游原", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/114_%E5%B0%86%E8%B5%B4%E5%90%B4%E5%85%B4%E7%99%BB%E4%B9%90%E6%B8%B8%E5%8E%9F.mp3", duration: "" },
+      { name: "遣怀", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/115_%E9%81%A3%E6%80%80.mp3", duration: "" },
+      { name: "茅屋为秋风所破歌", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/116_%E8%8C%85%E5%B1%8B%E4%B8%BA%E7%A7%8B%E9%A3%8E%E6%89%80%E7%A0%B4%E6%AD%8C.mp3", duration: "" },
+      { name: "卖炭翁", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/117_%E5%8D%96%E7%82%AD%E7%BF%81.mp3", duration: "" },
+      { name: "凉州词", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/118_%E5%87%89%E5%B7%9E%E8%AF%8D.mp3", duration: "" },
+      { name: "出塞", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/119_%E5%87%BA%E5%A1%9E.mp3", duration: "" },
+      { name: "凉州词", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/120_%E5%87%89%E5%B7%9E%E8%AF%8D.mp3", duration: "" },
+      { name: "使至塞上", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/121_%E4%BD%BF%E8%87%B3%E5%A1%9E%E4%B8%8A.mp3", duration: "" },
+      { name: "塞下曲 其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/122_%E5%A1%9E%E4%B8%8B%E6%9B%B2%20%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: "塞下曲 其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/123_%E5%A1%9E%E4%B8%8B%E6%9B%B2%20%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: "塞下曲 其三", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/124_%E5%A1%9E%E4%B8%8B%E6%9B%B2%20%E5%85%B6%E4%B8%89.mp3", duration: "" },
+      { name: "塞下曲 其四", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/125_%E5%A1%9E%E4%B8%8B%E6%9B%B2%20%E5%85%B6%E5%9B%9B.mp3", duration: "" },
+      { name: "塞上曲", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/126_%E5%A1%9E%E4%B8%8A%E6%9B%B2.mp3", duration: "" },
+      { name: "塞下曲", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/127_%E5%A1%9E%E4%B8%8B%E6%9B%B2.mp3", duration: "" },
+      { name: "关山月", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/128_%E5%85%B3%E5%B1%B1%E6%9C%88.mp3", duration: "" },
+      { name: "走马川地奉送封大夫出师西征", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/129_%E8%B5%B0%E9%A9%AC%E5%B7%9D%E5%9C%B0%E5%A5%89%E9%80%81%E5%B0%81%E5%A4%A7%E5%A4%AB%E5%87%BA%E5%B8%88%E8%A5%BF%E5%BE%81.mp3", duration: "" },
+      { name: "轮台歌奉送封大夫出师西征", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/130_%E8%BD%AE%E5%8F%B0%E6%AD%8C%E5%A5%89%E9%80%81%E5%B0%81%E5%A4%A7%E5%A4%AB%E5%87%BA%E5%B8%88%E8%A5%BF%E5%BE%81.mp3", duration: "" },
+      { name: "燕歌行并序", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/131_%E7%87%95%E6%AD%8C%E8%A1%8C%E5%B9%B6%E5%BA%8F.mp3", duration: "" },
+      { name: "古从军行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/132_%E5%8F%A4%E4%BB%8E%E5%86%9B%E8%A1%8C.mp3", duration: "" },
+      { name: "老将行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/133_%E8%80%81%E5%B0%86%E8%A1%8C.mp3", duration: "" },
+      { name: "书边事", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/134_%E4%B9%A6%E8%BE%B9%E4%BA%8B.mp3", duration: "" },
+      { name: "哥舒歌", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/135_%E5%93%A5%E8%88%92%E6%AD%8C.mp3", duration: "" },
+      { name: "陇西行其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/136_%E9%99%87%E8%A5%BF%E8%A1%8C%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: "兵车行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/137_%E5%85%B5%E8%BD%A6%E8%A1%8C.mp3", duration: "" },
+      { name: "丽人行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/138_%E4%B8%BD%E4%BA%BA%E8%A1%8C.mp3", duration: "" },
+      { name: "哀江头", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/139_%E5%93%80%E6%B1%9F%E5%A4%B4.mp3", duration: "" },
+      { name: "南园其五", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/140_%E5%8D%97%E5%9B%AD%E5%85%B6%E4%BA%94.mp3", duration: "" },
+      { name: "雁门太守行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/141_%E9%9B%81%E9%97%A8%E5%A4%AA%E5%AE%88%E8%A1%8C.mp3", duration: "" },
+      { name: "黄鹤楼", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/142_%E9%BB%84%E9%B9%A4%E6%A5%BC.mp3", duration: "" },
+      { name: "宿建德江", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/143_%E5%AE%BF%E5%BB%BA%E5%BE%B7%E6%B1%9F.mp3", duration: "" },
+      { name: "静夜思", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/144_%E9%9D%99%E5%A4%9C%E6%80%9D.mp3", duration: "" },
+      { name: "峨眉山月歌", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/145_%E5%B3%A8%E7%9C%89%E5%B1%B1%E6%9C%88%E6%AD%8C.mp3", duration: "" },
+      { name: "渡汉江", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/146_%E6%B8%A1%E6%B1%89%E6%B1%9F.mp3", duration: "" },
+      { name: "杂诗", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/147_%E6%9D%82%E8%AF%97.mp3", duration: "" },
+      { name: "九月九日忆山东兄弟", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/148_%E4%B9%9D%E6%9C%88%E4%B9%9D%E6%97%A5%E5%BF%86%E5%B1%B1%E4%B8%9C%E5%85%84%E5%BC%9F.mp3", duration: "" },
+      { name: "逢入京使", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/149_%E9%80%A2%E5%85%A5%E4%BA%AC%E4%BD%BF.mp3", duration: "" },
+      { name: "题金陵渡", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/150_%E9%A2%98%E9%87%91%E9%99%B5%E6%B8%A1.mp3", duration: "" },
+      { name: "杂诗", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/151_%E6%9D%82%E8%AF%97.mp3", duration: "" },
+      { name: "夜上受降城闻笛", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/152_%E5%A4%9C%E4%B8%8A%E5%8F%97%E9%99%8D%E5%9F%8E%E9%97%BB%E7%AC%9B.mp3", duration: "" },
+      { name: "行军九日思长安故园", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/153_%E8%A1%8C%E5%86%9B%E4%B9%9D%E6%97%A5%E6%80%9D%E9%95%BF%E5%AE%89%E6%95%85%E5%9B%AD.mp3", duration: "" },
+      { name: "春夜洛城闻笛", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/154_%E6%98%A5%E5%A4%9C%E6%B4%9B%E5%9F%8E%E9%97%BB%E7%AC%9B.mp3", duration: "" },
+      { name: "子夜吴歌 秋歌", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/155_%E5%AD%90%E5%A4%9C%E5%90%B4%E6%AD%8C%20%E7%A7%8B%E6%AD%8C.mp3", duration: "" },
+      { name: "琴歌", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/156_%E7%90%B4%E6%AD%8C.mp3", duration: "" },
+      { name: "金陵酒肆留别", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/157_%E9%87%91%E9%99%B5%E9%85%92%E8%82%86%E7%95%99%E5%88%AB.mp3", duration: "" },
+      { name: "题大庾岭北驿", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/158_%E9%A2%98%E5%A4%A7%E5%BA%BE%E5%B2%AD%E5%8C%97%E9%A9%BF.mp3", duration: "" },
+      { name: "宿桐庐江寄广陵旧游", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/159_%E5%AE%BF%E6%A1%90%E5%BA%90%E6%B1%9F%E5%AF%84%E5%B9%BF%E9%99%B5%E6%97%A7%E6%B8%B8.mp3", duration: "" },
+      { name: "早寒有怀", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/160_%E6%97%A9%E5%AF%92%E6%9C%89%E6%80%80.mp3", duration: "" },
+      { name: "月夜", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/161_%E6%9C%88%E5%A4%9C.mp3", duration: "" },
+      { name: "江乡故人偶集客舍", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/162_%E6%B1%9F%E4%B9%A1%E6%95%85%E4%BA%BA%E5%81%B6%E9%9B%86%E5%AE%A2%E8%88%8D.mp3", duration: "" },
+      { name: "旅宿", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/163_%E6%97%85%E5%AE%BF.mp3", duration: "" },
+      { name: "除夜有怀", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/164_%E9%99%A4%E5%A4%9C%E6%9C%89%E6%80%80.mp3", duration: "" },
+      { name: "章台夜思", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/165_%E7%AB%A0%E5%8F%B0%E5%A4%9C%E6%80%9D.mp3", duration: "" },
+      { name: "阁夜", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/166_%E9%98%81%E5%A4%9C.mp3", duration: "" },
+      { name: "自河南经乱", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/167_%E8%87%AA%E6%B2%B3%E5%8D%97%E7%BB%8F%E4%B9%B1.mp3", duration: "" },
+      { name: "鹿柴", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/168_%E9%B9%BF%E6%9F%B4.mp3", duration: "" },
+      { name: "竹里馆", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/169_%E7%AB%B9%E9%87%8C%E9%A6%86.mp3", duration: "" },
+      { name: "桃花溪", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/170_%E6%A1%83%E8%8A%B1%E6%BA%AA.mp3", duration: "" },
+      { name: "山行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/171_%E5%B1%B1%E8%A1%8C.mp3", duration: "" },
+      { name: "竹枝词", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/172_%E7%AB%B9%E6%9E%9D%E8%AF%8D.mp3", duration: "" },
+      { name: "破山寺后禅院", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/173_%E7%A0%B4%E5%B1%B1%E5%AF%BA%E5%90%8E%E7%A6%85%E9%99%A2.mp3", duration: "" },
+      { name: "终南山", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/174_%E7%BB%88%E5%8D%97%E5%B1%B1.mp3", duration: "" },
+      { name: "过香积寺", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/175_%E8%BF%87%E9%A6%99%E7%A7%AF%E5%AF%BA.mp3", duration: "" },
+      { name: "终南别业", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/176_%E7%BB%88%E5%8D%97%E5%88%AB%E4%B8%9A.mp3", duration: "" },
+      { name: "过故人庄", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/177_%E8%BF%87%E6%95%85%E4%BA%BA%E5%BA%84.mp3", duration: "" },
+      { name: "积雨辋川庄作", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/178_%E7%A7%AF%E9%9B%A8%E8%BE%8B%E5%B7%9D%E5%BA%84%E4%BD%9C.mp3", duration: "" },
+      { name: "下终南山过斛斯山人宿置酒", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/179_%E4%B8%8B%E7%BB%88%E5%8D%97%E5%B1%B1%E8%BF%87%E6%96%9B%E6%96%AF%E5%B1%B1%E4%BA%BA%E5%AE%BF%E7%BD%AE%E9%85%92.mp3", duration: "" },
+      { name: "青溪", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/180_%E9%9D%92%E6%BA%AA.mp3", duration: "" },
+      { name: "渭川田家", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/181_%E6%B8%AD%E5%B7%9D%E7%94%B0%E5%AE%B6.mp3", duration: "" },
+      { name: "桃源行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/182_%E6%A1%83%E6%BA%90%E8%A1%8C.mp3", duration: "" },
+      { name: "乌衣巷", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/183_%E4%B9%8C%E8%A1%A3%E5%B7%B7.mp3", duration: "" },
+      { name: "赤壁", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/184_%E8%B5%A4%E5%A3%81.mp3", duration: "" },
+      { name: "泊秦淮", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/185_%E6%B3%8A%E7%A7%A6%E6%B7%AE.mp3", duration: "" },
+      { name: "贾生", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/186_%E8%B4%BE%E7%94%9F.mp3", duration: "" },
+      { name: "马嵬坡", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/187_%E9%A9%AC%E5%B5%AC%E5%9D%A1.mp3", duration: "" },
+      { name: "金陵图", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/188_%E9%87%91%E9%99%B5%E5%9B%BE.mp3", duration: "" },
+      { name: "江南春", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/189_%E6%B1%9F%E5%8D%97%E6%98%A5.mp3", duration: "" },
+      { name: "过华清宫", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/190_%E8%BF%87%E5%8D%8E%E6%B8%85%E5%AE%AB.mp3", duration: "" },
+      { name: ".登金陵凤凰台", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/191_.%E7%99%BB%E9%87%91%E9%99%B5%E5%87%A4%E5%87%B0%E5%8F%B0.mp3", duration: "" },
+      { name: ".蜀相", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/192_.%E8%9C%80%E7%9B%B8.mp3", duration: "" },
+      { name: "古柏行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/193_%E5%8F%A4%E6%9F%8F%E8%A1%8C.mp3", duration: "" },
+      { name: "经邹鲁祭孔子而叹之", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/194_%E7%BB%8F%E9%82%B9%E9%B2%81%E7%A5%AD%E5%AD%94%E5%AD%90%E8%80%8C%E5%8F%B9%E4%B9%8B.mp3", duration: "" },
+      { name: "夜泊牛渚怀古", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/195_%E5%A4%9C%E6%B3%8A%E7%89%9B%E6%B8%9A%E6%80%80%E5%8F%A4.mp3", duration: "" },
+      { name: "与诸子登岘山", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/196_%E4%B8%8E%E8%AF%B8%E5%AD%90%E7%99%BB%E5%B2%98%E5%B1%B1.mp3", duration: "" },
+      { name: "秋日登吴公台上寺远眺", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/197_%E7%A7%8B%E6%97%A5%E7%99%BB%E5%90%B4%E5%85%AC%E5%8F%B0%E4%B8%8A%E5%AF%BA%E8%BF%9C%E7%9C%BA.mp3", duration: "" },
+      { name: "蜀先主庙", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/198_%E8%9C%80%E5%85%88%E4%B8%BB%E5%BA%99.mp3", duration: "" },
+      { name: "楚江怀古", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/199_%E6%A5%9A%E6%B1%9F%E6%80%80%E5%8F%A4.mp3", duration: "" },
+      { name: "行经华阴", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/200_%E8%A1%8C%E7%BB%8F%E5%8D%8E%E9%98%B4.mp3", duration: "" },
+      { name: "望蓟门", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/201_%E6%9C%9B%E8%93%9F%E9%97%A8.mp3", duration: "" },
+      { name: "咏怀古迹•其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/202_%E5%92%8F%E6%80%80%E5%8F%A4%E8%BF%B9%E2%80%A2%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: "咏怀古迹•其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/203_%E5%92%8F%E6%80%80%E5%8F%A4%E8%BF%B9%E2%80%A2%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: "咏怀古迹•其三", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/204_%E5%92%8F%E6%80%80%E5%8F%A4%E8%BF%B9%E2%80%A2%E5%85%B6%E4%B8%89.mp3", duration: "" },
+      { name: "咏怀古迹•其四", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/205_%E5%92%8F%E6%80%80%E5%8F%A4%E8%BF%B9%E2%80%A2%E5%85%B6%E5%9B%9B.mp3", duration: "" },
+      { name: "咏怀古迹•其五", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/206_%E5%92%8F%E6%80%80%E5%8F%A4%E8%BF%B9%E2%80%A2%E5%85%B6%E4%BA%94.mp3", duration: "" },
+      { name: "长沙过贾谊宅", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/207_%E9%95%BF%E6%B2%99%E8%BF%87%E8%B4%BE%E8%B0%8A%E5%AE%85.mp3", duration: "" },
+      { name: "西塞山怀古", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/208_%E8%A5%BF%E5%A1%9E%E5%B1%B1%E6%80%80%E5%8F%A4.mp3", duration: "" },
+      { name: "隋宫", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/209_%E9%9A%8B%E5%AE%AB.mp3", duration: "" },
+      { name: "筹笔驿", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/210_%E7%AD%B9%E7%AC%94%E9%A9%BF.mp3", duration: "" },
+      { name: "苏武庙", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/211_%E8%8B%8F%E6%AD%A6%E5%BA%99.mp3", duration: "" },
+      { name: "八阵图", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/212_%E5%85%AB%E9%98%B5%E5%9B%BE.mp3", duration: "" },
+      { name: "送别", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/213_%E9%80%81%E5%88%AB.mp3", duration: "" },
+      { name: "送崔九", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/214_%E9%80%81%E5%B4%94%E4%B9%9D.mp3", duration: "" },
+      { name: "送灵澈", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/215_%E9%80%81%E7%81%B5%E6%BE%88.mp3", duration: "" },
+      { name: "送上人", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/216_%E9%80%81%E4%B8%8A%E4%BA%BA.mp3", duration: "" },
+      { name: "秋夜寄邱员外", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/217_%E7%A7%8B%E5%A4%9C%E5%AF%84%E9%82%B1%E5%91%98%E5%A4%96.mp3", duration: "" },
+      { name: "问刘十九", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/218_%E9%97%AE%E5%88%98%E5%8D%81%E4%B9%9D.mp3", duration: "" },
+      { name: "寄扬州韩绰判官", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/219_%E5%AF%84%E6%89%AC%E5%B7%9E%E9%9F%A9%E7%BB%B0%E5%88%A4%E5%AE%98.mp3", duration: "" },
+      { name: "寄令狐郎中", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/220_%E5%AF%84%E4%BB%A4%E7%8B%90%E9%83%8E%E4%B8%AD.mp3", duration: "" },
+      { name: "闻王昌龄左迁龙标遥有此寄", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/221_%E9%97%BB%E7%8E%8B%E6%98%8C%E9%BE%84%E5%B7%A6%E8%BF%81%E9%BE%99%E6%A0%87%E9%81%A5%E6%9C%89%E6%AD%A4%E5%AF%84.mp3", duration: "" },
+      { name: "别董大", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/222_%E5%88%AB%E8%91%A3%E5%A4%A7.mp3", duration: "" },
+      { name: "赠汪伦", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/223_%E8%B5%A0%E6%B1%AA%E4%BC%A6.mp3", duration: "" },
+      { name: "送友人", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/224_%E9%80%81%E5%8F%8B%E4%BA%BA.mp3", duration: "" },
+      { name: "送杜少府之任蜀州", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/225_%E9%80%81%E6%9D%9C%E5%B0%91%E5%BA%9C%E4%B9%8B%E4%BB%BB%E8%9C%80%E5%B7%9E.mp3", duration: "" },
+      { name: "寄左省杜拾遗", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/226_%E5%AF%84%E5%B7%A6%E7%9C%81%E6%9D%9C%E6%8B%BE%E9%81%97.mp3", duration: "" },
+      { name: "赠孟浩然", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/227_%E8%B5%A0%E5%AD%9F%E6%B5%A9%E7%84%B6.mp3", duration: "" },
+      { name: "渡荆门送别", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/228_%E6%B8%A1%E8%8D%86%E9%97%A8%E9%80%81%E5%88%AB.mp3", duration: "" },
+      { name: "月夜忆舍弟", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/229_%E6%9C%88%E5%A4%9C%E5%BF%86%E8%88%8D%E5%BC%9F.mp3", duration: "" },
+      { name: "天末怀李白", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/230_%E5%A4%A9%E6%9C%AB%E6%80%80%E6%9D%8E%E7%99%BD.mp3", duration: "" },
+      { name: "奉济驿重送严公四韵", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/231_%E5%A5%89%E6%B5%8E%E9%A9%BF%E9%87%8D%E9%80%81%E4%B8%A5%E5%85%AC%E5%9B%9B%E9%9F%B5.mp3", duration: "" },
+      { name: "别房太尉墓", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/232_%E5%88%AB%E6%88%BF%E5%A4%AA%E5%B0%89%E5%A2%93.mp3", duration: "" },
+      { name: "辋川闲居赠裴秀才迪", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/233_%E8%BE%8B%E5%B7%9D%E9%97%B2%E5%B1%85%E8%B5%A0%E8%A3%B4%E7%A7%80%E6%89%8D%E8%BF%AA.mp3", duration: "" },
+      { name: "酬张少府", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/234_%E9%85%AC%E5%BC%A0%E5%B0%91%E5%BA%9C.mp3", duration: "" },
+      { name: "送梓州李使君", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/235_%E9%80%81%E6%A2%93%E5%B7%9E%E6%9D%8E%E4%BD%BF%E5%90%9B.mp3", duration: "" },
+      { name: "秦中感秋寄远上人", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/236_%E7%A7%A6%E4%B8%AD%E6%84%9F%E7%A7%8B%E5%AF%84%E8%BF%9C%E4%B8%8A%E4%BA%BA.mp3", duration: "" },
+      { name: "留别王维", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/237_%E7%95%99%E5%88%AB%E7%8E%8B%E7%BB%B4.mp3", duration: "" },
+      { name: "送李中丞归汉阳别业", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/238_%E9%80%81%E6%9D%8E%E4%B8%AD%E4%B8%9E%E5%BD%92%E6%B1%89%E9%98%B3%E5%88%AB%E4%B8%9A.mp3", duration: "" },
+      { name: "饯别王十一南游", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/239_%E9%A5%AF%E5%88%AB%E7%8E%8B%E5%8D%81%E4%B8%80%E5%8D%97%E6%B8%B8.mp3", duration: "" },
+      { name: "送僧归日本", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/240_%E9%80%81%E5%83%A7%E5%BD%92%E6%97%A5%E6%9C%AC.mp3", duration: "" },
+      { name: "谷口书斋寄杨补阙", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/241_%E8%B0%B7%E5%8F%A3%E4%B9%A6%E6%96%8B%E5%AF%84%E6%9D%A8%E8%A1%A5%E9%98%99.mp3", duration: "" },
+      { name: "淮上喜会梁川故人", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/242_%E6%B7%AE%E4%B8%8A%E5%96%9C%E4%BC%9A%E6%A2%81%E5%B7%9D%E6%95%85%E4%BA%BA.mp3", duration: "" },
+      { name: "赋得暮雨送李胄", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/243_%E8%B5%8B%E5%BE%97%E6%9A%AE%E9%9B%A8%E9%80%81%E6%9D%8E%E8%83%84.mp3", duration: "" },
+      { name: "酬程延秋夜即事见赠", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/244_%E9%85%AC%E7%A8%8B%E5%BB%B6%E7%A7%8B%E5%A4%9C%E5%8D%B3%E4%BA%8B%E8%A7%81%E8%B5%A0.mp3", duration: "" },
+      { name: "送李端", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/245_%E9%80%81%E6%9D%8E%E7%AB%AF.mp3", duration: "" },
+      { name: "喜见外弟又言别", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/246_%E5%96%9C%E8%A7%81%E5%A4%96%E5%BC%9F%E5%8F%88%E8%A8%80%E5%88%AB.mp3", duration: "" },
+      { name: "云阳馆与韩绅宿别", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/247_%E4%BA%91%E9%98%B3%E9%A6%86%E4%B8%8E%E9%9F%A9%E7%BB%85%E5%AE%BF%E5%88%AB.mp3", duration: "" },
+      { name: "贼平后送人北归", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/248_%E8%B4%BC%E5%B9%B3%E5%90%8E%E9%80%81%E4%BA%BA%E5%8C%97%E5%BD%92.mp3", duration: "" },
+      { name: "没蕃故人", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/249_%E6%B2%A1%E8%95%83%E6%95%85%E4%BA%BA.mp3", duration: "" },
+      { name: "送人东游", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/250_%E9%80%81%E4%BA%BA%E4%B8%9C%E6%B8%B8.mp3", duration: "" },
+      { name: "送魏万之京", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/251_%E9%80%81%E9%AD%8F%E4%B8%87%E4%B9%8B%E4%BA%AC.mp3", duration: "" },
+      { name: "送李少府贬峡中王少府贬长沙", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/252_%E9%80%81%E6%9D%8E%E5%B0%91%E5%BA%9C%E8%B4%AC%E5%B3%A1%E4%B8%AD%E7%8E%8B%E5%B0%91%E5%BA%9C%E8%B4%AC%E9%95%BF%E6%B2%99.mp3", duration: "" },
+      { name: "江州重别薛六柳八二员外", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/253_%E6%B1%9F%E5%B7%9E%E9%87%8D%E5%88%AB%E8%96%9B%E5%85%AD%E6%9F%B3%E5%85%AB%E4%BA%8C%E5%91%98%E5%A4%96.mp3", duration: "" },
+      { name: "寄李儋元锡", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/254_%E5%AF%84%E6%9D%8E%E5%84%8B%E5%85%83%E9%94%A1.mp3", duration: "" },
+      { name: "赠卫八处士", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/255_%E8%B5%A0%E5%8D%AB%E5%85%AB%E5%A4%84%E5%A3%AB.mp3", duration: "" },
+      { name: "梦李白•其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/256_%E6%A2%A6%E6%9D%8E%E7%99%BD%E2%80%A2%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: "梦李白•其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/257_%E6%A2%A6%E6%9D%8E%E7%99%BD%E2%80%A2%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: "送綦毋潜落第还乡", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/258_%E9%80%81%E7%B6%A6%E6%AF%8B%E6%BD%9C%E8%90%BD%E7%AC%AC%E8%BF%98%E4%B9%A1.mp3", duration: "" },
+      { name: "送别", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/259_%E9%80%81%E5%88%AB.mp3", duration: "" },
+      { name: "秋登兰山寄张五", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/260_%E7%A7%8B%E7%99%BB%E5%85%B0%E5%B1%B1%E5%AF%84%E5%BC%A0%E4%BA%94.mp3", duration: "" },
+      { name: ".夏日南亭怀辛大", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/261_.%E5%A4%8F%E6%97%A5%E5%8D%97%E4%BA%AD%E6%80%80%E8%BE%9B%E5%A4%A7.mp3", duration: "" },
+      { name: "同从弟南斋玩月忆山阴崔少府", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/262_%E5%90%8C%E4%BB%8E%E5%BC%9F%E5%8D%97%E6%96%8B%E7%8E%A9%E6%9C%88%E5%BF%86%E5%B1%B1%E9%98%B4%E5%B4%94%E5%B0%91%E5%BA%9C.mp3", duration: "" },
+      { name: "初发扬子寄元大校书", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/263_%E5%88%9D%E5%8F%91%E6%89%AC%E5%AD%90%E5%AF%84%E5%85%83%E5%A4%A7%E6%A0%A1%E4%B9%A6.mp3", duration: "" },
+      { name: ".寄全椒山中道士", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/264_.%E5%AF%84%E5%85%A8%E6%A4%92%E5%B1%B1%E4%B8%AD%E9%81%93%E5%A3%AB.mp3", duration: "" },
+      { name: ".长安遇冯著", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/265_.%E9%95%BF%E5%AE%89%E9%81%87%E5%86%AF%E8%91%97.mp3", duration: "" },
+      { name: ".宣州谢朓楼饯别校书叔云", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/266_.%E5%AE%A3%E5%B7%9E%E8%B0%A2%E6%9C%93%E6%A5%BC%E9%A5%AF%E5%88%AB%E6%A0%A1%E4%B9%A6%E5%8F%94%E4%BA%91.mp3", duration: "" },
+      { name: ".白雪歌送武判官归京", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/267_.%E7%99%BD%E9%9B%AA%E6%AD%8C%E9%80%81%E6%AD%A6%E5%88%A4%E5%AE%98%E5%BD%92%E4%BA%AC.mp3", duration: "" },
+      { name: ".丹青引赠曹将军霸", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/268_.%E4%B8%B9%E9%9D%92%E5%BC%95%E8%B5%A0%E6%9B%B9%E5%B0%86%E5%86%9B%E9%9C%B8.mp3", duration: "" },
+      { name: ".春思", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/269_.%E6%98%A5%E6%80%9D.mp3", duration: "" },
+      { name: ".长干行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/270_.%E9%95%BF%E5%B9%B2%E8%A1%8C.mp3", duration: "" },
+      { name: ".秋夜曲", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/271_.%E7%A7%8B%E5%A4%9C%E6%9B%B2.mp3", duration: "" },
+      { name: ".杂诗", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/272_.%E6%9D%82%E8%AF%97.mp3", duration: "" },
+      { name: ".春思", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/273_.%E6%98%A5%E6%80%9D.mp3", duration: "" },
+      { name: ".怨情", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/274_.%E6%80%A8%E6%83%85.mp3", duration: "" },
+      { name: ".何满子", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/275_.%E4%BD%95%E6%BB%A1%E5%AD%90.mp3", duration: "" },
+      { name: ".春怨", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/276_.%E6%98%A5%E6%80%A8.mp3", duration: "" },
+      { name: ".玉阶怨", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/277_.%E7%8E%89%E9%98%B6%E6%80%A8.mp3", duration: "" },
+      { name: ".征人怨", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/278_.%E5%BE%81%E4%BA%BA%E6%80%A8.mp3", duration: "" },
+      { name: ".春词", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/279_.%E6%98%A5%E8%AF%8D.mp3", duration: "" },
+      { name: ".后宫词", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/280_.%E5%90%8E%E5%AE%AB%E8%AF%8D.mp3", duration: "" },
+      { name: ".秋夕", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/281_.%E7%A7%8B%E5%A4%95.mp3", duration: "" },
+      { name: ".瑶瑟怨", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/282_.%E7%91%B6%E7%91%9F%E6%80%A8.mp3", duration: "" },
+      { name: ".瑶池", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/283_.%E7%91%B6%E6%B1%A0.mp3", duration: "" },
+      { name: ".佳人", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/284_.%E4%BD%B3%E4%BA%BA.mp3", duration: "" },
+      { name: ".西施咏", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/285_.%E8%A5%BF%E6%96%BD%E5%92%8F.mp3", duration: "" },
+      { name: ".清平调·其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/286_.%E6%B8%85%E5%B9%B3%E8%B0%83%C2%B7%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: ".清平调•其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/287_.%E6%B8%85%E5%B9%B3%E8%B0%83%E2%80%A2%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: ".清平调•其三", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/288_.%E6%B8%85%E5%B9%B3%E8%B0%83%E2%80%A2%E5%85%B6%E4%B8%89.mp3", duration: "" },
+      { name: ".洛阳女儿行", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/289_.%E6%B4%9B%E9%98%B3%E5%A5%B3%E5%84%BF%E8%A1%8C.mp3", duration: "" },
+      { name: ".新嫁娘词", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/290_.%E6%96%B0%E5%AB%81%E5%A8%98%E8%AF%8D.mp3", duration: "" },
+      { name: ".赠别•其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/291_.%E8%B5%A0%E5%88%AB%E2%80%A2%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: ".赠别•其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/292_.%E8%B5%A0%E5%88%AB%E2%80%A2%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: ".嫦娥", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/293_.%E5%AB%A6%E5%A8%A5.mp3", duration: "" },
+      { name: ".长恨歌", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/294_.%E9%95%BF%E6%81%A8%E6%AD%8C.mp3", duration: "" },
+      { name: ".长相思·其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/295_.%E9%95%BF%E7%9B%B8%E6%80%9D%C2%B7%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: ".长相思·其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/296_.%E9%95%BF%E7%9B%B8%E6%80%9D%C2%B7%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: ".凉思", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/297_.%E5%87%89%E6%80%9D.mp3", duration: "" },
+      { name: ".遣悲怀•其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/298_.%E9%81%A3%E6%82%B2%E6%80%80%E2%80%A2%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: ".遣悲怀•其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/299_.%E9%81%A3%E6%82%B2%E6%80%80%E2%80%A2%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: ".遣悲怀•其三", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/300_.%E9%81%A3%E6%82%B2%E6%80%80%E2%80%A2%E5%85%B6%E4%B8%89.mp3", duration: "" },
+      { name: ".无题", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/301_.%E6%97%A0%E9%A2%98.mp3", duration: "" },
+      { name: ".锦瑟", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/302_.%E9%94%A6%E7%91%9F.mp3", duration: "" },
+      { name: ".无题•其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/303_.%E6%97%A0%E9%A2%98%E2%80%A2%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: ".无题•其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/304_.%E6%97%A0%E9%A2%98%E2%80%A2%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: ".无题", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/305_.%E6%97%A0%E9%A2%98.mp3", duration: "" },
+      { name: ".春雨", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/306_.%E6%98%A5%E9%9B%A8.mp3", duration: "" },
+      { name: ".无题•其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/307_.%E6%97%A0%E9%A2%98%E2%80%A2%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: ".无题•其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/308_.%E6%97%A0%E9%A2%98%E2%80%A2%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: "长干行其一", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/309_%E9%95%BF%E5%B9%B2%E8%A1%8C%E5%85%B6%E4%B8%80.mp3", duration: "" },
+      { name: "长干行其二", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/310_%E9%95%BF%E5%B9%B2%E8%A1%8C%E5%85%B6%E4%BA%8C.mp3", duration: "" },
+      { name: "李凭箜篌引", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/311_%E6%9D%8E%E5%87%AD%E7%AE%9C%E7%AF%8C%E5%BC%95.mp3", duration: "" },
+      { name: "听安万善吹筚篥歌", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/312_%E5%90%AC%E5%AE%89%E4%B8%87%E5%96%84%E5%90%B9%E7%AD%9A%E7%AF%A5%E6%AD%8C.mp3", duration: "" },
+      { name: "听蜀僧浚弹琴", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/313_%E5%90%AC%E8%9C%80%E5%83%A7%E6%B5%9A%E5%BC%B9%E7%90%B4.mp3", duration: "" },
+      { name: "听筝", url: "https://bigflower2026.github.io/baobeo-audio/audio/poetry/314_%E5%90%AC%E7%AD%9D.mp3", duration: "" }
+    ]
+  },
+  {
     id: "music",
     name: "音乐儿歌",
     icon: "🎵",
@@ -744,6 +1138,77 @@ function showPlayer() {
 // ============================================================
 //  首页渲染
 // ============================================================
+
+function getWeekNumber() {
+  var now = new Date();
+  var start = new Date(now.getFullYear(), 0, 1);
+  var diff = now - start;
+  var oneWeek = 604800000;
+  return Math.ceil(((diff / oneWeek) + start.getDay() + 1) / 7);
+}
+
+function renderWeekly() {
+  var weekNum = getWeekNumber();
+  var poetryCat = getCat("poetry");
+  var engCat = getCat("english");
+  if (!poetryCat || !engCat || poetryCat.items.length === 0 || engCat.items.length === 0) {
+    document.getElementById("weeklySection").innerHTML = "";
+    return;
+  }
+
+  // 每周1首古诗 + 2首英语，按周数轮转
+  var poemIdx = (weekNum - 1) % poetryCat.items.length;
+  var eng1Idx = (weekNum - 1) % engCat.items.length;
+  var eng2Idx = (weekNum) % engCat.items.length;
+  if (eng2Idx === eng1Idx) eng2Idx = (eng2Idx + 1) % engCat.items.length;
+
+  var items = [
+    { catId: "poetry", idx: poemIdx, icon: "📜", catName: "古诗精听" },
+    { catId: "english", idx: eng1Idx, icon: "🔤", catName: "英语熏听" },
+    { catId: "english", idx: eng2Idx, icon: "🔤", catName: "英语熏听" }
+  ];
+
+  var html = '<div class="weekly-card">';
+  html += '<div class="weekly-header">';
+  html += '<span class="badge">本周精听</span>';
+  html += '<span class="week-num">第' + weekNum + '周</span>';
+  html += '</div>';
+  html += '<div class="weekly-title">坚持每周听一听，积少成多进步大</div>';
+  html += '<div class="weekly-items">';
+
+  for (var i = 0; i < items.length; i++) {
+    var it = items[i];
+    var cat = getCat(it.catId);
+    var item = cat.items[it.idx];
+    html += '<div class="weekly-item" onclick="playWeeklyItem(\'' + it.catId + '\', ' + it.idx + ')">';
+    html += '<div class="w-icon">' + it.icon + '</div>';
+    html += '<div class="w-info">';
+    html += '<div class="w-name">' + item.name + '</div>';
+    html += '<div class="w-cat">' + it.catName + '</div>';
+    html += '</div>';
+    html += '<div class="w-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>';
+    html += '</div>';
+  }
+
+  html += '</div></div>';
+  document.getElementById("weeklySection").innerHTML = html;
+}
+
+function playWeeklyItem(catId, idx) {
+  playFromListInCat(catId, idx);
+}
+
+function playFromListInCat(catId, idx) {
+  var cat = getCat(catId);
+  if (!cat) return;
+  currentCatId = catId;
+  currentIdx = idx;
+  loadAndPlay(idx);
+  showPage("pagePlayer");
+  document.getElementById("miniPlayer").classList.remove("show");
+}
+
+
 function renderHome() {
   // 问候语
   var h = new Date().getHours();
@@ -756,6 +1221,10 @@ function renderHome() {
   else { emoji = "🌆"; text = "晚上好"; }
   document.getElementById("greetEmoji").textContent = emoji;
   document.getElementById("greetText").textContent = text;
+
+
+  // 每周精听
+  renderWeekly();
 
   // 分类卡片
   var html = "";
